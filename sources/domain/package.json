@@ -1,0 +1,9 @@
+{
+    "name": "@sessions/domain",
+    "version": "0.0.0",
+    "license": "UNLICENSED",
+    "main": "./src/index.ts",
+    "peerDependencies": {
+        "@node-ts/bus-messages": "^0.3.1"
+    }
+}

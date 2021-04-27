@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package sessions;
+
+service SessionsService {
+    /**
+     * commands
+     */
+    rpc startSession(StartSessionCommand) returns (StartSessionResponse) {}
+    rpc destroySession(DestroySessionCommand) returns (DestroySessionResponse) {}
+    rpc destroyAllSessions(DestroyAllSessionsCommand) returns (DestroyAllSessionsResponse) {}
+
+    /**
+     * queries
+     */
+    rpc restoreSession(RestoreSessionQuery) returns (RestoreSessionResponse) {}
+}
+
+message Empty {}
+
+message Session {
+    string token = 1;
+    string userId = 2;
+}
+
+message StartSessionCommand {
+    string userId = 1;
+}
+
+message DestroySessionCommand {
+    string sessionToken = 1;
+}
+
+message DestroyAllSessionsCommand {
+    string userId = 1;
+}
+
+message RestoreSessionQuery {
+    string sessionToken = 1;
+}
+
+message RestoreSessionResponse {
+    bool success = 1;
+    RestoreSessionResult result = 2;
+    string errorMessage = 3;
+}
+
+message RestoreSessionResult {
+    Session session = 1;
+}
+
+message DestroySessionResponse {
+    bool success = 1;
+    string errorMessage = 3;
+}
+
+message StartSessionResponse {
+    bool success = 1;
+    StartSessionResult result = 2;
+    string errorMessage = 3;
+}
+
+message StartSessionResult {
+    Session session = 1;
+}
+
+message DestroyAllSessionsResponse {
+    bool success = 1;
+    string errorMessage = 2;
+}
